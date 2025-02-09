@@ -6,7 +6,7 @@ interface AlumnoProps {
     alumno: Alumno;
 }
 
-const Alumno = ({ alumno }: AlumnoProps) => {
+const AlumnoComponent = ({ alumno }: AlumnoProps) => {
     const [asistencia, setAsistencia] = useState<boolean>(alumno.asistencia);
     function onPressFunction() {
         console.log("Antes: " + alumno.asistencia)
@@ -26,4 +26,4 @@ const Alumno = ({ alumno }: AlumnoProps) => {
     )
 };
 
-export default Alumno;
+export default AlumnoComponent;
