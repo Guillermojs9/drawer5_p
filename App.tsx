@@ -4,15 +4,36 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import HomeScreen from './src/screens/HomeScreen';
 import AulasScreen from './src/screens/AulasScreen';
 import ConfiguracionScreen from './src/screens/ConfiguracionScreen';
+import { createStackNavigator } from '@react-navigation/stack';
+import { RootStackParamList } from './src/types/RootStackParamList';
+import AulaScreen from './src/screens/AulaScreen';
 
 const Drawer = createDrawerNavigator();
+const Stack = createStackNavigator<RootStackParamList>();
+
+function AulasStackNavigator() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="AulasStack"
+        component={AulasScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="AulaStack"
+        component={AulaScreen}
+        options={{ headerShown: false }}
+      />
+    </Stack.Navigator>
+  );
+}
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Home">
+      <Drawer.Navigator initialRouteName="HomeDrawer">
         <Drawer.Screen
-          name="Home"
+          name="HomeDrawer"
           component={HomeScreen}
           options={{
             title: 'Inicio',
@@ -20,15 +41,15 @@ export default function App() {
           }}
         />
         <Drawer.Screen
-          name="Aulas"
-          component={AulasScreen}
+          name="AulasDrawer"
+          component={AulasStackNavigator}
           options={{
             title: 'Aulas',
             drawerLabel: 'Aulas',
           }}
         />
         <Drawer.Screen
-          name="Configuracion"
+          name="ConfiguracionDrawer"
           component={ConfiguracionScreen}
           options={{
             title: 'Configuración',
