@@ -1,25 +1,9 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { View, Text } from 'react-native';
-
-const HomeScreen = () => (
-  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    <Text>Pantalla de Inicio</Text>
-  </View>
-);
-
-const ProfileScreen = () => (
-  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    <Text>Pantalla de Perfil</Text>
-  </View>
-);
-
-const SettingsScreen = () => (
-  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    <Text>Pantalla de Configuración</Text>
-  </View>
-);
+import HomeScreen from './src/screens/HomeScreen';
+import AulasScreen from './src/screens/AulasScreen';
+import ConfiguracionScreen from './src/screens/ConfiguracionScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -36,16 +20,16 @@ export default function App() {
           }}
         />
         <Drawer.Screen
-          name="Profile"
-          component={ProfileScreen}
+          name="Aulas"
+          component={AulasScreen}
           options={{
-            title: 'Perfil',
-            drawerLabel: 'Perfil',
+            title: 'Aulas',
+            drawerLabel: 'Aulas',
           }}
         />
         <Drawer.Screen
-          name="Settings"
-          component={SettingsScreen}
+          name="Configuracion"
+          component={ConfiguracionScreen}
           options={{
             title: 'Configuración',
             drawerLabel: 'Configuración',
