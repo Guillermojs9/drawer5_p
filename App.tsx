@@ -7,6 +7,7 @@ import ConfiguracionScreen from './src/screens/ConfiguracionScreen';
 import { createStackNavigator } from '@react-navigation/stack';
 import { RootStackParamList } from './src/types/RootStackParamList';
 import AulaScreen from './src/screens/AulaScreen';
+import { CustomAulasProvider } from './src/providers/AulasContext';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator<RootStackParamList>();
@@ -30,33 +31,35 @@ function AulasStackNavigator() {
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Drawer.Navigator initialRouteName="HomeDrawer">
-        <Drawer.Screen
-          name="HomeDrawer"
-          component={HomeScreen}
-          options={{
-            title: 'Inicio',
-            drawerLabel: 'Inicio',
-          }}
-        />
-        <Drawer.Screen
-          name="AulasDrawer"
-          component={AulasStackNavigator}
-          options={{
-            title: 'Aulas',
-            drawerLabel: 'Aulas',
-          }}
-        />
-        <Drawer.Screen
-          name="ConfiguracionDrawer"
-          component={ConfiguracionScreen}
-          options={{
-            title: 'Configuración',
-            drawerLabel: 'Configuración',
-          }}
-        />
-      </Drawer.Navigator>
-    </NavigationContainer>
+    <CustomAulasProvider>
+      <NavigationContainer>
+        <Drawer.Navigator initialRouteName="HomeDrawer">
+          <Drawer.Screen
+            name="HomeDrawer"
+            component={HomeScreen}
+            options={{
+              title: 'Inicio',
+              drawerLabel: 'Inicio',
+            }}
+          />
+          <Drawer.Screen
+            name="AulasDrawer"
+            component={AulasStackNavigator}
+            options={{
+              title: 'Aulas',
+              drawerLabel: 'Aulas',
+            }}
+          />
+          <Drawer.Screen
+            name="ConfiguracionDrawer"
+            component={ConfiguracionScreen}
+            options={{
+              title: 'Configuración',
+              drawerLabel: 'Configuración',
+            }}
+          />
+        </Drawer.Navigator>
+      </NavigationContainer>
+    </CustomAulasProvider>
   );
 }
