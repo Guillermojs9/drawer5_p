@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-export const colors = {
+ const colors = {
     blanco: '#FAFFFE',
     verde: '#50D890',
     azul: '#4F98CA',
@@ -15,12 +15,20 @@ export const styles = StyleSheet.create({
         backgroundColor: colors.blanco,
         padding: 20,
     },
+    listaAulas: {
+        flex: 1,
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
+        backgroundColor: colors.blanco,
+        padding: 20,
+    },
     aula: {
-        width: 275,
-        height: 275,
+        width: 235,
+        height: 175,
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 10,
+        //marginBottom: 10,
+        marginRight: 10,
         borderRadius: 25,
         backgroundColor: 'white',
         borderColor: colors.azul,
@@ -74,5 +82,9 @@ export const styles = StyleSheet.create({
     buttonPressed: {
         backgroundColor: '#585858',
         elevation: 5,
-    }
+    },
+    imagen: {
+        width: '100%',
+        height: '80%',
+    },
 });

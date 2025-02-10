@@ -84,18 +84,26 @@ const alumnos4: Array<Alumno> = [
 const aula1: Aula = {
     nombre: "DAM",
     alumnos: alumnos1,
+    imagen: 'https://www.bbva.com/wp-content/uploads/2019/12/minimalismo_digital.jpg',
+    denominacion: 'Desarrollo de Aplicaciones Multiplataforma',
 }
 const aula2: Aula = {
     nombre: "ASIR",
     alumnos: alumnos2,
+    imagen: 'https://c.wallhere.com/photos/f2/57/minimalism_telephone_computer_technology-1005661.jpg!d',
+    denominacion: 'Administración de Sistemas Informáticos en Red',
 }
 const aula3: Aula = {
     nombre: "DAW",
     alumnos: alumnos3,
+    imagen: 'https://www.bitec.es/wp-content/uploads/2022/02/creatividad-web-project-service-bajo-peso-472x383.png',
+    denominacion: 'Desarrollo de Aplicaciones Web',
 }
 const aula4: Aula = {
     nombre: "SMR",
     alumnos: alumnos4,
+    imagen: 'https://blogs.unitec.mx/hubfs/Imported_Blog_Media/tips-super-basicos-de-seguridad-informatica-5-Dec-17-2022-06-01-39-3384-PM.png',
+    denominacion: 'Sistemas Microinformáticos y Redes',
 }
 
 export const aulas2: Array<Aula> = [

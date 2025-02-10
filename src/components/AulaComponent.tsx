@@ -2,7 +2,7 @@ import { NativeStackNavigationProp } from "react-native-screens/lib/typescript/n
 import { RootStackParamList } from "../types/RootStackParamList";
 import Aula from "../entities/Aula";
 import { useCustomAulas } from "../providers/AulasContext";
-import { Pressable, View, Text } from "react-native";
+import { Pressable, View, Text, Image } from "react-native";
 import { styles } from "../styles/Styles";
 
 interface AulaProps {
@@ -19,6 +19,8 @@ const AulaComponent = ({ aula, navigation }: AulaProps) => {
     return (
         <Pressable onPress={onPressFunction}>
             <View style={styles.aula}>
+                <Image source={{ uri: aula.imagen }} style={styles.imagen} resizeMode="cover"
+                />
                 <Text style={styles.aulatext}>
                     {aula.nombre}
                 </Text>

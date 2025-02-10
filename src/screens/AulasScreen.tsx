@@ -9,16 +9,18 @@ type NavigationProps = NativeStackScreenProps<RootStackParamList, 'AulasStack'>;
 const AulasScreen = ({ navigation }: NavigationProps) => {
     const { aulas } = useCustomAulas();
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={styles.listaAulas}>
             <Text style={styles.bienvenida}>Mis aulas:</Text>
-            <FlatList
-                showsVerticalScrollIndicator={false}
-                data={aulas}
-                renderItem={({ item }) =>
-                    <AulaComponent aula={item} navigation={navigation} />
-                }
-                keyExtractor={item => item.nombre + " "}
-            />
+            <View style={{ height: 200 }}>
+                <FlatList
+                    horizontal={true}
+                    data={aulas}
+                    renderItem={({ item }) =>
+                        <AulaComponent aula={item} navigation={navigation} />
+                    }
+                    keyExtractor={item => item.nombre + " "}
+                />
+            </View>
         </SafeAreaView>
     );
 };
