@@ -1,25 +1,32 @@
 import { StyleSheet } from "react-native";
 
- const colors = {
+export const lightTheme = {
     blanco: '#FAFFFE',
     verde: '#50D890',
     azul: '#4F98CA',
     oscuro: '#272727',
 }
 
+export const darkTheme = {
+    blanco: '#1F1F1F',
+    verde: '#3B8A5D',
+    azul: '#3A6F87',
+    oscuro: '#FAFAFA',
+};
+
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: colors.blanco,
+        backgroundColor: lightTheme.blanco,
         padding: 20,
     },
     listaAulas: {
         flex: 1,
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
-        backgroundColor: colors.blanco,
+        backgroundColor: lightTheme.blanco,
         padding: 20,
     },
     aula: {
@@ -31,7 +38,7 @@ export const styles = StyleSheet.create({
         marginRight: 10,
         borderRadius: 25,
         backgroundColor: 'white',
-        borderColor: colors.azul,
+        borderColor: lightTheme.azul,
         borderWidth: 3,
         overflow: 'hidden',
         position: 'relative',
@@ -54,31 +61,31 @@ export const styles = StyleSheet.create({
         backgroundColor: '#FFFFF',
     },
     aulatext: {
-        color: colors.oscuro,
+        color: lightTheme.oscuro,
         fontSize: 25,
         fontWeight: 'bold',
         marginBottom: 10,
     },
     alumnotext: {
-        color: colors.oscuro,
+        color: lightTheme.oscuro,
         fontSize: 18,
         fontWeight: 'bold',
     },
     fechaText: {
-        color: colors.oscuro,
+        color: lightTheme.oscuro,
         fontSize: 18,
         fontWeight: 'bold',
         marginBottom: 10,
     },
     bienvenida: {
-        color: colors.oscuro,
+        color: lightTheme.oscuro,
         fontSize: 30,
         fontWeight: 'bold',
         marginBottom: 10,
         alignSelf: 'flex-start',
     },
     buttonText: {
-        color: colors.oscuro,
+        color: lightTheme.oscuro,
         fontSize: 18,
         fontWeight: 'bold',
         textAlign: 'center',
