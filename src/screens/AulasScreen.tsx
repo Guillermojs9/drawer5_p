@@ -10,7 +10,7 @@ const AulasScreen = ({ navigation }: NavigationProps) => {
     const { aulas } = useCustomAulas();
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.bienvenida}>¡Bienvenido!</Text>
+            <Text style={styles.bienvenida}>Mis aulas:</Text>
             <FlatList
                 showsVerticalScrollIndicator={false}
                 data={aulas}

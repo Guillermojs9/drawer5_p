@@ -8,6 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { RootStackParamList } from './src/types/RootStackParamList';
 import AulaScreen from './src/screens/AulaScreen';
 import { CustomAulasProvider } from './src/providers/AulasContext';
+import { Ionicons } from '@expo/vector-icons';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator<RootStackParamList>();
@@ -40,6 +41,10 @@ export default function App() {
             options={{
               title: 'Inicio',
               drawerLabel: 'Inicio',
+              drawerIcon: ({ color, size }) => (
+                <Ionicons name="home-outline" size={size} color={color} />
+              ),
+              drawerActiveTintColor: '#4F98CA',
             }}
           />
           <Drawer.Screen
@@ -48,6 +53,10 @@ export default function App() {
             options={{
               title: 'Aulas',
               drawerLabel: 'Aulas',
+              drawerIcon: ({ color, size }) => (
+                <Ionicons name="school-outline" size={size} color={color} />
+              ),
+              drawerActiveTintColor: '#4F98CA',
             }}
           />
           <Drawer.Screen
@@ -56,6 +65,10 @@ export default function App() {
             options={{
               title: 'Configuración',
               drawerLabel: 'Configuración',
+              drawerIcon: ({ color, size }) => (
+                <Ionicons name="settings-outline" size={size} color={color} />
+              ),
+              drawerActiveTintColor: '#4F98CA',
             }}
           />
         </Drawer.Navigator>

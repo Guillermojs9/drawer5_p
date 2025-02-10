@@ -1,33 +1,34 @@
 import { useEffect, useState } from "react";
 import { View, Text, Alert, SafeAreaView, FlatList, Button } from "react-native";
 import { useCustomAulas } from "../providers/AulasContext";
-import RNHTMLtoPDF from 'react-native-html-to-pdf';
+import * as Print from 'expo-print';
+import * as Sharing from 'expo-sharing';
 import { styles } from "../styles/Styles";
 import AlumnoComponent from "../components/AlumnoComponent";
+
 const getCurrentDate = () => {
-    var date = new Date().getDate();
-    var month = new Date().getMonth() + 1;
-    var year = new Date().getFullYear();
-    return date + '-' + month + '-' + year;
-}
+  const date = new Date().getDate();
+  const month = new Date().getMonth() + 1;
+  const year = new Date().getFullYear();
+  return `${date}-${month}-${year}`;
+};
 
 const AulaScreen = () => {
-    const [loading, setLoading] = useState<boolean>(false);
-    const [fecha, setFecha] = useState<string>("");
-    const { aulaConcreta } = useCustomAulas();
-    useEffect(() => {
-        setFecha(getCurrentDate())
-    }, [fecha])
-    if (!aulaConcreta) {
-        return <Text>Ningún aula seleccionada</Text>
-    }
+  const [loading, setLoading] = useState<boolean>(false);
+  const [fecha, setFecha] = useState<string>(getCurrentDate());
+  const { aulaConcreta } = useCustomAulas();
 
-    const generatePDF = async () => {
-        setLoading(true);
-        try {
-            const html = `
+  if (!aulaConcreta) {
+    return <Text>Ningún aula seleccionada</Text>
+  }
+
+  const generatePDF = async () => {
+    setLoading(true);
+    try {
+      const html = `
     <html>
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
         <style>
           body {
             font-family: 'Helvetica', sans-serif;
@@ -95,42 +96,57 @@ const AulaScreen = () => {
         <footer>Reporte generado automáticamente</footer>
       </body>
     </html>
-              `;
-            const options = {
-                html,
-                fileName: `asistencia-${aulaConcreta.nombre}-${fecha}`,
-                directory: 'Generados',
-            };
-            console.log('RNHTMLtoPDF:', RNHTMLtoPDF);
-            const file = await RNHTMLtoPDF.convert(options);
-            Alert.alert('Success', `PDF saved to ${file.filePath}`);
-            setLoading(false);
-        } catch (error: any) {
-            Alert.alert('Error', error.message);
-        }
-    }
+            `;
 
-    return (
-        <SafeAreaView style={styles.container}>
-            <Text style={styles.aulatext}>{aulaConcreta.nombre}</Text>
-            <Text style={styles.fechaText}>{fecha}</Text>
-            <View style={styles.parent}>
-                <FlatList
-                    showsVerticalScrollIndicator={false}
-                    data={aulaConcreta.alumnos}
-                    renderItem={({ item }) =>
-                        <AlumnoComponent alumno={item} />
-                    }
-                    keyExtractor={item => item.nombre + " "}
-                />
-            </View>
-            <Button
-                onPress={generatePDF}
-                title="Descargar PDF"
-                color="#841584"
-                accessibilityLabel="Learn more about this purple button"
-            />
-        </SafeAreaView>
-    )
+      const { uri } = await Print.printToFileAsync({
+        html,
+        base64: false
+      });
+      const isSharingAvailable = await Sharing.isAvailableAsync();
+
+      if (isSharingAvailable) {
+        await Sharing.shareAsync(uri, {
+          mimeType: 'application/pdf',
+          dialogTitle: 'Compartir lista de asistencia',
+          UTI: 'com.adobe.pdf'
+        });
+      } else {
+        Alert.alert('Error', 'Sharing is not available on this device');
+      }
+
+    } catch (error) {
+      console.error('PDF generation error:', error);
+      Alert.alert('Error',
+        error instanceof Error ? error.message : 'An unknown error occurred while generating the PDF'
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.aulatext}>{aulaConcreta.nombre}</Text>
+      <Text style={styles.fechaText}>{fecha}</Text>
+      <View style={styles.parent}>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={aulaConcreta.alumnos}
+          renderItem={({ item }) =>
+            <AlumnoComponent alumno={item} />
+          }
+          keyExtractor={item => item.nombre + " "}
+        />
+      </View>
+      <Button
+        onPress={generatePDF}
+        title={loading ? "Generando..." : "Descargar PDF"}
+        disabled={loading}
+        color="#4F98CA"
+        
+      />
+    </SafeAreaView>
+  );
 };
+
 export default AulaScreen;

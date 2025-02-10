@@ -1,10 +1,13 @@
-import { View, Text } from "react-native";
+import { View, Text, SafeAreaView } from "react-native";
+import { styles } from "../styles/Styles";
 
 const ConfiguracionScreen = () => {
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>Pantalla de Configuración</Text>
-        </View>
+        <SafeAreaView style={styles.container}>
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                <Text>Pantalla de Configuración</Text>
+            </View>
+        </SafeAreaView>
     );
 };
 

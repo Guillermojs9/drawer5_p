@@ -1,10 +1,15 @@
-import { View, Text } from "react-native";
+import { View, Text, SafeAreaView } from "react-native";
+import { styles } from "../styles/Styles";
 
 const HomeScreen = () => {
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>Pantalla de Inicio</Text>
-        </View>
+        <SafeAreaView style={styles.container}>
+            <View></View>
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                <Text>Pantalla de Inicio</Text>
+            </View>
+        </SafeAreaView>
+
     )
 }
 
