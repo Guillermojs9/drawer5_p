@@ -37,7 +37,7 @@ export const styles = StyleSheet.create({
         position: 'relative',
     },
     alumnoView: {
-        height: 75,
+        height: 55,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'white',
@@ -50,11 +50,14 @@ export const styles = StyleSheet.create({
         flex: 1,
         width: 350,
         height: 350,
+        marginBottom: 20,
+        backgroundColor: '#FFFFF',
     },
     aulatext: {
         color: colors.oscuro,
         fontSize: 25,
         fontWeight: 'bold',
+        marginBottom: 10,
     },
     alumnotext: {
         color: colors.oscuro,
@@ -65,6 +68,7 @@ export const styles = StyleSheet.create({
         color: colors.oscuro,
         fontSize: 18,
         fontWeight: 'bold',
+        marginBottom: 10,
     },
     bienvenida: {
         color: colors.oscuro,
@@ -87,4 +91,15 @@ export const styles = StyleSheet.create({
         width: '100%',
         height: '80%',
     },
+    informacionInstituto: {
+        height: 200,
+        width: 300,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 25,
+        backgroundColor: '#50D890',
+    },
+    generarPdf: {
+        marginTop: 20,
+    }
 });

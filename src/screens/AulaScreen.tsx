@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { View, Text, Alert, SafeAreaView, FlatList, Button } from "react-native";
+import { View, Text, Alert, SafeAreaView, FlatList, Button, Pressable } from "react-native";
 import { useCustomAulas } from "../providers/AulasContext";
 import * as Print from 'expo-print';
 import * as Sharing from 'expo-sharing';
@@ -126,7 +126,7 @@ const AulaScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.aulatext}>{aulaConcreta.nombre}</Text>
+      <Text style={styles.aulatext}>{aulaConcreta.denominacion}</Text>
       <Text style={styles.fechaText}>{fecha}</Text>
       <View style={styles.parent}>
         <FlatList
